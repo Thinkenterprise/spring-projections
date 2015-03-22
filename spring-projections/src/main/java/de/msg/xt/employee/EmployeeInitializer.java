@@ -3,7 +3,6 @@ package de.msg.xt.employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.msg.xt.aircraft.Aircraft;
 import de.msg.xt.employee.repository.EmployeeRepository;
 
 /**  
@@ -17,7 +16,6 @@ import de.msg.xt.employee.repository.EmployeeRepository;
 
 @Service
 public class EmployeeInitializer {
-
 	
 	private EmployeeRepository employeeRepository;
 
@@ -28,11 +26,11 @@ public class EmployeeInitializer {
 		
 		Pilot pilot = new Pilot("P656747", "Franz", "Flieger");
 		pilot.setCertificateNumber("RF775566734");
-		pilot.setAllowedAircrafts(new Aircraft.Type[]{Aircraft.Type.A380});
+		pilot.setAllowedAircrafts(new String[]{"A380"});
 		employeeRepository.save(pilot);
 
-		CabinAttendant attendant1 = new CabinAttendant("P234234", "Herbert", "Haser");
-		attendant1.setRank(CabinAttendant.Rank.Purser);
+		CabinAttendant attendant1 = new CabinAttendant("P234234", "Herbert", "Hase");
+		attendant1.setRank(CabinRank.Purser);
 		employeeRepository.save(attendant1);
 
 	}

@@ -1,7 +1,5 @@
 package de.msg.xt.aircraft;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 
 import de.msg.xt.core.AbstractEntity;
@@ -18,12 +16,10 @@ import de.msg.xt.core.AbstractEntity;
 @Entity
 public class Aircraft extends AbstractEntity {
 	
-	public static enum Type {
-		A300, A310, A318, A319, A320, A380, B747, B787
-	}
-
 	private long serial;
-	private Type type;
+	
+	private String type;
+	
 	private String registration;
 
 	public Aircraft() {
@@ -35,7 +31,7 @@ public class Aircraft extends AbstractEntity {
 		this.serial = serial;
 	}
 
-	public Aircraft(long serial, Type type, String registration) {
+	public Aircraft(long serial, String type, String registration) {
 		super();
 		this.serial = serial;
 		this.type = type;
@@ -50,11 +46,11 @@ public class Aircraft extends AbstractEntity {
 		this.serial = serial;
 	}
 
-	public Type getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(Type type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

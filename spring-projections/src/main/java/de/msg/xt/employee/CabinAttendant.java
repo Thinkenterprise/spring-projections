@@ -5,11 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class CabinAttendant extends Employee {
 
-	public static enum Rank {
-		Purser, PurserAssistant, Attendant
-	}
-	
-	private Rank rank;
+	private CabinRank rank;
 	
 	public CabinAttendant() {
 		super();
@@ -23,11 +19,11 @@ public class CabinAttendant extends Employee {
 		super(staffNumber, firstName, lastName);
 	}
 
-	public Rank getRank() {
+	public CabinRank getRank() {
 		return rank;
 	}
 
-	public void setRank(Rank rank) {
+	public void setRank(CabinRank rank) {
 		this.rank = rank;
 	}
 }

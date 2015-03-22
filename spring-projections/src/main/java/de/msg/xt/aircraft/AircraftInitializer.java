@@ -18,17 +18,19 @@ import de.msg.xt.aircraft.repository.AircraftRepository;
 @Service
 public class AircraftInitializer {
 
-	@Autowired
-	public AircraftInitializer(AircraftRepository planeRepository) {
+	AircraftRepository aircraftRepository;
 	
-		Assert.notNull(planeRepository, "PlaneRepository must not be null!");
+	@Autowired
+	public AircraftInitializer(AircraftRepository aircraftRepository) {
+	
+		Assert.notNull(aircraftRepository, "PlaneRepository must not be null!");
 				
-		if(planeRepository.count()!=0)
+		if(aircraftRepository.count()!=0)
 			return;
 			
-		planeRepository.save(new Aircraft(1, Aircraft.Type.A319, "D-AILA"));
-		planeRepository.save(new Aircraft(2, Aircraft.Type.A320, "D-AIPA"));
-		planeRepository.save(new Aircraft(3, Aircraft.Type.A380, "D-AIMA"));
+		aircraftRepository.save(new Aircraft(1, "A319", "D-AILA"));
+		aircraftRepository.save(new Aircraft(2, "A320", "D-AIPA"));
+		aircraftRepository.save(new Aircraft(3, "A380", "D-AIMA"));
 	}
 	
 }
