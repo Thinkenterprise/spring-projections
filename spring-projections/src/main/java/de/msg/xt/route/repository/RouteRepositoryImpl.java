@@ -26,7 +26,6 @@ public class RouteRepositoryImpl implements RouteRepositoryJpa {
 	public List<Route> findAllJpa() {
 		
 		TypedQuery<Route> query = entityManager.createQuery("select r from Route r", Route.class);
-		
 		return query.getResultList();
 	}
 

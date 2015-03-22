@@ -30,7 +30,7 @@ public class Aircraft extends AbstractEntity {
 		super();
 	}
 
-	public Aircraft(Long serial) {
+	public Aircraft(long serial) {
 		super();
 		this.serial = serial;
 	}
@@ -42,11 +42,11 @@ public class Aircraft extends AbstractEntity {
 		this.registration = registration;
 	}
 
-	public Long getSerial() {
+	public long getSerial() {
 		return serial;
 	}
 
-	public void setSerial(Long serial) {
+	public void setSerial(long serial) {
 		this.serial = serial;
 	}
 
