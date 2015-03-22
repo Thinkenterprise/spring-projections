@@ -24,13 +24,13 @@ public class EmployeeInitializer {
 		super();
 		this.employeeRepository = employeeRepository;
 		
-		Pilot pilot = new Pilot("P656747", "Franz", "Flieger");
+		Pilot pilot = new Pilot("P656747", "Fred", "Flieger");
 		pilot.setCertificateNumber("RF775566734");
 		pilot.setAllowedAircrafts(new String[]{"A380"});
 		employeeRepository.save(pilot);
 
-		CabinAttendant attendant1 = new CabinAttendant("P234234", "Herbert", "Hase");
-		attendant1.setRank(CabinRank.Purser);
+		CabinAttendant attendant1 = new CabinAttendant("P234234", "Tom", "Stewart");
+		attendant1.setRank(1);
 		employeeRepository.save(attendant1);
 
 	}

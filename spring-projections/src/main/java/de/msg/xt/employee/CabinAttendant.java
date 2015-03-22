@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 @Entity
 public class CabinAttendant extends Employee {
 
-	private CabinRank rank;
+	private int rank;
 	
 	public CabinAttendant() {
 		super();
@@ -19,11 +19,11 @@ public class CabinAttendant extends Employee {
 		super(staffNumber, firstName, lastName);
 	}
 
-	public CabinRank getRank() {
+	public int getRank() {
 		return rank;
 	}
 
-	public void setRank(CabinRank rank) {
+	public void setRank(int rank) {
 		this.rank = rank;
 	}
 }
