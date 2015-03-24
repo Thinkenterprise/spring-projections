@@ -18,7 +18,7 @@ import de.msg.xt.core.AbstractEntity;
 @Entity
 public class Flight extends AbstractEntity {
 
-	//@Max(value=200)
+	
 	private double price;
 	private Date time;
 	

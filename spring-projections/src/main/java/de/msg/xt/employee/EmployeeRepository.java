@@ -1,8 +1,6 @@
-package de.msg.xt.aircraft.repository;
+package de.msg.xt.employee;
 
 import org.springframework.data.repository.CrudRepository;
-
-import de.msg.xt.aircraft.Aircraft;
 
 /**  
 * Spring Projections Samples 
@@ -13,6 +11,6 @@ import de.msg.xt.aircraft.Aircraft;
 * @author Michael Schäfer, Achim Müller 
 */
 
-public interface AircraftRepository extends CrudRepository<Aircraft, String>{
+public interface EmployeeRepository extends CrudRepository<Employee, Long>{
 
 }

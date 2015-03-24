@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import de.msg.xt.aircraft.repository.AircraftRepository;
-
 /**  
 * Spring Projections Samples 
 * Design and Development by msg Applied Technology Research

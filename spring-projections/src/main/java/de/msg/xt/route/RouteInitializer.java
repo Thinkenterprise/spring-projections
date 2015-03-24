@@ -5,8 +5,6 @@ import java.util.Calendar;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import de.msg.xt.route.repository.RouteRepository;
-
 /**  
 * Spring Projections Samples 
 * Design and Development by msg Applied Technology Research

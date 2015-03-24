@@ -1,6 +1,11 @@
 package de.msg.xt.employee;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToOne;
 
 import de.msg.xt.core.AbstractEntity;
 
@@ -13,12 +18,16 @@ import de.msg.xt.core.AbstractEntity;
 * @author Michael Schäfer, Achim Müller 
 */
 
-@MappedSuperclass
+@Entity
 public class Employee extends AbstractEntity {
 	
 	private String staffNumber;
 	private String lastName;
 	private String firstName;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+	private Role role;
+
 
 	public Employee() {
 		super();
@@ -58,5 +67,12 @@ public class Employee extends AbstractEntity {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 }

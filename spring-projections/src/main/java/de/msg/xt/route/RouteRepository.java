@@ -1,6 +1,6 @@
-package de.msg.xt.route.service;
+package de.msg.xt.route;
 
-import org.springframework.stereotype.Service;
+import org.springframework.data.repository.CrudRepository;
 
 /**  
 * Spring Projections Samples 
@@ -12,15 +12,8 @@ import org.springframework.stereotype.Service;
 */
 
 
-@Service("routeService")
-public class RouteService {
+public interface RouteRepository extends CrudRepository<Route, Long> {
 
-	public Double calculateTotal() {
-		
-			return 120.34;
-	}
-	
-	
 	
 	
 }

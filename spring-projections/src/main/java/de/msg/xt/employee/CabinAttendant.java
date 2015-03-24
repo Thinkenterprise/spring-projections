@@ -1,9 +1,16 @@
 package de.msg.xt.employee;
 
 import javax.persistence.Entity;
-
+/**  
+* Spring Projections Samples 
+* Design and Development by msg Applied Technology Research
+* Copyright (c) 2015 msg systems ag (http://www.msg-systems.com/)
+* All Rights Reserved.
+* 
+* @author Michael Schäfer, Achim Müller 
+*/
 @Entity
-public class CabinAttendant extends Employee {
+public class CabinAttendant extends Role {
 
 	private int rank;
 	
@@ -11,13 +18,13 @@ public class CabinAttendant extends Employee {
 		super();
 	}
 
-	public CabinAttendant(String staffNumber) {
-		super(staffNumber);
+
+	public CabinAttendant(int rank) {
+		super();
+		this.rank = rank;
 	}
 
-	public CabinAttendant(String staffNumber, String firstName, String lastName) {
-		super(staffNumber, firstName, lastName);
-	}
+
 
 	public int getRank() {
 		return rank;
