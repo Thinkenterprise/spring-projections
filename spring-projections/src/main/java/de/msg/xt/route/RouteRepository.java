@@ -1,6 +1,7 @@
 package de.msg.xt.route;
 
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**  
 * Spring Projections Samples 
@@ -11,9 +12,6 @@ import org.springframework.data.repository.CrudRepository;
 * @author Michael Schäfer, Achim Müller 
 */
 
-
-public interface RouteRepository extends CrudRepository<Route, Long> {
-
-	
-	
+//@RepositoryRestResource(excerptProjection = RouteConnectionExcerpt.class)
+public interface RouteRepository extends CrudRepository<Route, Long> {	
 }

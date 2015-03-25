@@ -1,5 +1,6 @@
 package de.msg.xt.route;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -20,30 +21,31 @@ public class Flight extends AbstractEntity {
 
 	
 	private double price;
-	private Date time;
+	private LocalDate date;
 	
 	public Flight() {
 		super();
 	}
 	
-	public Flight(double price, Date time) {
+	public Flight(double price, LocalDate date) {
 		super();
 		this.price = price;
-		this.time = time;
+		this.date = date;
 	}
 	
 	public double getPrice() {
 		return price;
 	}
+	
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public Date getTime() {
-		return time;
-	}
-	public void setTime(Date time) {
-		this.time = time;
+	
+	public LocalDate getDate() {
+		return date;
 	}
 	
-	
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 }

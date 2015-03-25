@@ -1,5 +1,7 @@
 package de.msg.xt.route;
 
+import java.time.LocalTime;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,9 +27,12 @@ import de.msg.xt.core.AbstractEntity;
 @NamedEntityGraph(name="routeFlight", attributeNodes={@NamedAttributeNode("flights")}) 
 public class Route extends AbstractEntity {
 
-	String number;
-	String destination;
+	String flightNumber;
 	String departure;
+	String destination;
+	LocalTime time;
+	
+	String[] plannedWeekdays;
 	
 	@Transient
 	Double total;
@@ -37,28 +42,20 @@ public class Route extends AbstractEntity {
 		super();
 	}
 
-	public Route(String number) {
+	public Route(String flightNumber) {
 		super();
-		this.number = number;
+		this.flightNumber = flightNumber;
 	}
 		
-	public Route(String number, String destination, String departure) {
+	public Route(String flightNumber, String departure, String destination) {
 		super();
-		this.number = number;
+		this.flightNumber = flightNumber;
 		this.destination = destination;
 		this.departure = departure;
 	}
 
 	@OneToMany(cascade=CascadeType.ALL)
 	private Set<Flight> flights = new HashSet<Flight>();
-
-	public String getDestination() {
-		return destination;
-	}
-
-	public void setDestination(String destination) {
-		this.destination = destination;
-	}
 
 	public String getDeparture() {
 		return departure;
@@ -68,12 +65,20 @@ public class Route extends AbstractEntity {
 		this.departure = departure;
 	}
 
-	public String getNumber() {
-		return number;
+	public String getDestination() {
+		return destination;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setDestination(String destination) {
+		this.destination = destination;
+	}
+
+	public String getFlightNumber() {
+		return flightNumber;
+	}
+
+	public void setFlightNumber(String number) {
+		this.flightNumber = number;
 	}
 	
 	
@@ -94,6 +99,22 @@ public class Route extends AbstractEntity {
 
 	public void setTotal(Double total) {
 		this.total = total;
+	}
+
+	public LocalTime getTime() {
+		return time;
+	}
+
+	public void setTime(LocalTime time) {
+		this.time = time;
+	}
+
+	public String[] getPlannedWeekdays() {
+		return plannedWeekdays;
+	}
+
+	public void setPlannedWeekdays(String[] plannedWeekdays) {
+		this.plannedWeekdays = plannedWeekdays;
 	}
 	
 }
