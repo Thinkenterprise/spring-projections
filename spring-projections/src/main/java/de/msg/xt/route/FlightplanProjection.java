@@ -17,7 +17,7 @@ import org.springframework.data.rest.core.config.Projection;
 */
 
 @Projection(name = "flightplan", types = Route.class)
-public interface FlightplanExcerpt {
+public interface FlightplanProjection {
 
 	String getFlightNumber();
 
