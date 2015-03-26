@@ -1,10 +1,8 @@
 package de.msg.xt.route;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +28,8 @@ public class RouteInitializer {
 		this.routeRepository = routeRepository;
 		
 		Route route = new Route("LH444", "Koeln", "Muenchen");
-		route.setPlannedWeekdays(new String[] {"Mo", "Di", "Mi", "Do", "Fr"});
+		route.addPlannedWeekday(DayOfWeek.MONDAY);
+		route.addPlannedWeekday(DayOfWeek.FRIDAY);
 		route.setTime(LocalTime.of(8, 0));
 		
 		Flight flight = new Flight(120.45, LocalDate.of(2015, 9, 23) );

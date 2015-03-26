@@ -1,5 +1,10 @@
 package de.msg.xt.route;
 
+import java.time.DayOfWeek;
+import java.time.LocalTime;
+import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
 /**  
@@ -12,7 +17,7 @@ import org.springframework.data.rest.core.config.Projection;
 */
 
 @Projection(name = "connectionExcerpt", types = Route.class)
-public interface RouteConnectionExcerpt {
+public interface ConnectionExcerpt {
 
 	String getDeparture();
 	

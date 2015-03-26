@@ -1,12 +1,15 @@
 package de.msg.xt.route;
 
+import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
@@ -30,9 +33,12 @@ public class Route extends AbstractEntity {
 	String flightNumber;
 	String departure;
 	String destination;
+	
 	LocalTime time;
 	
-	String[] plannedWeekdays;
+	@Enumerated(EnumType.ORDINAL)
+	@ElementCollection(targetClass=DayOfWeek.class)
+	Set<DayOfWeek> plannedWeekdays = new HashSet<DayOfWeek>();
 	
 	@Transient
 	Double total;
@@ -109,12 +115,16 @@ public class Route extends AbstractEntity {
 		this.time = time;
 	}
 
-	public String[] getPlannedWeekdays() {
+	public Set<DayOfWeek> getPlannedWeekdays() {
 		return plannedWeekdays;
 	}
 
-	public void setPlannedWeekdays(String[] plannedWeekdays) {
+	public void setPlannedWeekdays(Set<DayOfWeek> plannedWeekdays) {
 		this.plannedWeekdays = plannedWeekdays;
+	}
+
+	public void addPlannedWeekday(DayOfWeek plannedWeekday) {
+		this.plannedWeekdays.add(plannedWeekday);
 	}
 	
 }
