@@ -16,7 +16,7 @@ import org.springframework.data.rest.core.config.Projection;
 * @author Michael Schäfer, Achim Müller 
 */
 
-@Projection(name = "connectionExcerpt", types = Route.class)
+@Projection(name = "connection", types = Route.class)
 public interface ConnectionExcerpt {
 
 	String getDeparture();

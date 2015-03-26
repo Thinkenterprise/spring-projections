@@ -16,7 +16,7 @@ import org.springframework.data.rest.core.config.Projection;
 * @author Michael Schäfer, Achim Müller 
 */
 
-@Projection(name = "flightplanExcerpt", types = Route.class)
+@Projection(name = "flightplan", types = Route.class)
 public interface FlightplanExcerpt {
 
 	String getFlightNumber();
@@ -27,6 +27,6 @@ public interface FlightplanExcerpt {
 
 	Set<DayOfWeek> getPlannedWeekdays();
 
-	// TODO: Schöner formatieren
-	LocalTime getTime();
+	@Value("#{target.time.toString()}")
+	String getTime();
 }
