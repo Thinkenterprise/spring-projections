@@ -1,9 +1,6 @@
 package de.msg.xt.route;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
