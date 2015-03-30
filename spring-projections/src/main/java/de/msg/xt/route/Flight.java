@@ -6,7 +6,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 import de.msg.xt.aircraft.Aircraft;
 import de.msg.xt.core.AbstractEntity;
@@ -27,7 +27,7 @@ public class Flight extends AbstractEntity {
 	
 	private LocalDate date;
 	
-	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="aircraft")
 	private Aircraft aircraft;
 	

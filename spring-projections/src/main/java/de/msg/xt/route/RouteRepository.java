@@ -1,6 +1,5 @@
 package de.msg.xt.route;
 
-import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.repository.CrudRepository;
 
 /**  
@@ -16,7 +15,7 @@ import org.springframework.data.repository.CrudRepository;
 // @RepositoryRestResource(excerptProjection = ConnectionProjection.class)
 public interface RouteRepository extends CrudRepository<Route, Long> {
 	
-	@EntityGraph("routeFlightAircraft")
+	//@EntityGraph("routeFlightAircraft")
 	public Iterable<Route> findAll();
 
 }
