@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
@@ -33,7 +34,6 @@ import de.msg.xt.route.RouteRepository;
  */
 
 @Service
-@Transactional
 public class DataInitializer {
 
 	@Autowired
@@ -49,7 +49,6 @@ public class DataInitializer {
 	private EmployeeRepository employeeRepository;
 
 	@PostConstruct
-	@Transactional
 	public void init () {
 		
 		initAircrafts();
@@ -82,8 +81,7 @@ public class DataInitializer {
 
 	public void initRoutes () {
 
-		Route savedRoute = null;
-		
+		// Workaround: Using manual transactions, because @Transactional does not work
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setName("InitRouteTx");
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -96,25 +94,33 @@ public class DataInitializer {
 			route.setTime(LocalTime.of(8, 0));
 		
 			Flight flight = new Flight(120.45, LocalDate.of(2015, 9, 23));
-			Aircraft aircraft1 = this.aircraftRepository.findByRegistration("D-AIMA");
-			flight.setAircraft(aircraft1);
+			Aircraft aircraft = this.aircraftRepository.findByRegistration("D-AIMA");
+			flight.setAircraft(aircraft);
 			route.addFlight(flight);
-			//aircraft1.addFlight(flight);
 
 			flight = new Flight(111.45, LocalDate.of(2015, 9, 24));
+			aircraft = this.aircraftRepository.findByRegistration("D-AILA");
+			flight.setAircraft(aircraft);
 			route.addFlight(flight);
 
-			savedRoute = routeRepository.save(route);
-		}
+			routeRepository.save(route);
+
+			route = new Route("LH444", "Koeln", "Hamburg");
+			route.addScheduledWeekday(DayOfWeek.MONDAY);
+			route.addScheduledWeekday(DayOfWeek.FRIDAY);
+			route.setTime(LocalTime.of(8, 45));
+		
+			flight = new Flight(120.45, LocalDate.of(2015, 10, 1));
+			aircraft = this.aircraftRepository.findByRegistration("D-AIMA");
+			flight.setAircraft(aircraft);
+			route.addFlight(flight);
+
+			routeRepository.save(route);
+}
 		catch (Exception ex) {
 		    txManager.rollback(status);
 		    throw ex;
 		}
 		txManager.commit(status);
-
-		Route newRoute = this.routeRepository.findOne(savedRoute.getId());
-		System.out.println("FlightNumber="+newRoute.getFlightNumber());
-		System.out.println("Flight[0]="+newRoute.getFlights().get(0));
-		System.out.println("Flight[0].aircraft="+newRoute.getFlights().get(0).getAircraft().getRegistration());
 	}
 }

@@ -28,20 +28,9 @@ public interface RouteFlightAircraftProjection {
 	
 	String getDestination();
 
-	Set<DayOfWeek> getScheduledWeekdays();
-
 	@Value("#{target.time.toString()}")
 	String getTime();
 	
-	List<FlightProjection> getFlights() ;
-	
-	@Projection(types = Flight.class)
-	public interface FlightProjection {
-		
-		@Value("#{target.date.toString()}")
-		String getDate();
-	}
-	/*
 	List<FlightProjection> getFlights() ;
 	
 	@Projection(types = Flight.class)
@@ -58,5 +47,4 @@ public interface RouteFlightAircraftProjection {
 			String getType();
 		}
 	}
-	*/
 }
