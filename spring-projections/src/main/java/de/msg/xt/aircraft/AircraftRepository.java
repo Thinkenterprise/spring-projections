@@ -2,6 +2,8 @@ package de.msg.xt.aircraft;
 
 import org.springframework.data.repository.CrudRepository;
 
+import com.google.common.base.Optional;
+
 /**  
 * Spring Projections Samples 
 * Design and Development by msg Applied Technology Research
@@ -12,5 +14,7 @@ import org.springframework.data.repository.CrudRepository;
 */
 
 public interface AircraftRepository extends CrudRepository<Aircraft, Long>{
+
+	Aircraft findByRegistration(String registration);
 
 }

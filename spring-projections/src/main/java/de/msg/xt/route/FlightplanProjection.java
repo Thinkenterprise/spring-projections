@@ -25,7 +25,7 @@ public interface FlightplanProjection {
 	
 	String getDestination();
 
-	Set<DayOfWeek> getPlannedWeekdays();
+	Set<DayOfWeek> getScheduledWeekdays();
 
 	@Value("#{target.time.toString()}")
 	String getTime();

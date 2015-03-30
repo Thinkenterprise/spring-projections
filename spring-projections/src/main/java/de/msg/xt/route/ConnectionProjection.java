@@ -1,10 +1,6 @@
 package de.msg.xt.route;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-import java.util.Set;
-
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.rest.core.config.Projection;
 
 /**  

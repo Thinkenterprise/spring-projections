@@ -1,10 +1,14 @@
 package de.msg.xt.route;
 
 import java.time.LocalDate;
-import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
+import de.msg.xt.aircraft.Aircraft;
 import de.msg.xt.core.AbstractEntity;
 
 /**  
@@ -19,9 +23,13 @@ import de.msg.xt.core.AbstractEntity;
 @Entity
 public class Flight extends AbstractEntity {
 
-	
 	private double price;
+	
 	private LocalDate date;
+	
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="aircraft")
+	private Aircraft aircraft;
 	
 	public Flight() {
 		super();
@@ -47,5 +55,13 @@ public class Flight extends AbstractEntity {
 	
 	public void setDate(LocalDate date) {
 		this.date = date;
+	}
+
+	public Aircraft getAircraft() {
+		return aircraft;
+	}
+
+	public void setAircraft(Aircraft aircraft) {
+		this.aircraft = aircraft;
 	}
 }

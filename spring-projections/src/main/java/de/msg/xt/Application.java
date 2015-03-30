@@ -2,6 +2,8 @@ package de.msg.xt;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**  
 * Spring Projections Samples 
@@ -13,6 +15,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 */
 
 @SpringBootApplication
+@EnableTransactionManagement
+@EnableJpaRepositories
 public class Application {
 	
 	public static void main(String[] args) {

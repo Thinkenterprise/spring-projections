@@ -2,7 +2,9 @@ package de.msg.xt.route;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -10,9 +12,12 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedEntityGraphs;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 import javax.persistence.Transient;
 
 import de.msg.xt.core.AbstractEntity;
@@ -27,7 +32,10 @@ import de.msg.xt.core.AbstractEntity;
 */
 
 @Entity
-@NamedEntityGraph(name="routeFlight", attributeNodes={@NamedAttributeNode("flights")}) 
+@NamedEntityGraphs({
+	@NamedEntityGraph(name="routeFlight", attributeNodes={@NamedAttributeNode("flights")}), 
+	@NamedEntityGraph(name="routeFlightAircraft", attributeNodes={@NamedAttributeNode(value="flights", subgraph="aircraft")})
+}) 
 public class Route extends AbstractEntity {
 
 	String flightNumber;
@@ -38,11 +46,10 @@ public class Route extends AbstractEntity {
 	
 	@Enumerated(EnumType.ORDINAL)
 	@ElementCollection(targetClass=DayOfWeek.class)
-	Set<DayOfWeek> plannedWeekdays = new HashSet<DayOfWeek>();
+	Set<DayOfWeek> scheduledWeekdays = new HashSet<DayOfWeek>();
 	
 	@Transient
 	Double total;
-	
 
 	public Route() {
 		super();
@@ -60,8 +67,9 @@ public class Route extends AbstractEntity {
 		this.departure = departure;
 	}
 
-	@OneToMany(cascade=CascadeType.ALL)
-	private Set<Flight> flights = new HashSet<Flight>();
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OrderColumn(name="date")
+	private List<Flight> flights = new ArrayList<Flight>();
 
 	public String getDeparture() {
 		return departure;
@@ -87,16 +95,15 @@ public class Route extends AbstractEntity {
 		this.flightNumber = number;
 	}
 	
-	
 	public void addFlight(Flight flight) {
 		flights.add(flight);
 	}
 
-	public Set<Flight> getFlights() {
+	public List<Flight> getFlights() {
 		return flights;
 	}
 
-	public void setFlights(Set<Flight> flights) {
+	public void setFlights(List<Flight> flights) {
 		this.flights = flights;
 	}
 	public Double getTotal() {
@@ -115,16 +122,15 @@ public class Route extends AbstractEntity {
 		this.time = time;
 	}
 
-	public Set<DayOfWeek> getPlannedWeekdays() {
-		return plannedWeekdays;
+	public Set<DayOfWeek> getScheduledWeekdays() {
+		return scheduledWeekdays;
 	}
 
-	public void setPlannedWeekdays(Set<DayOfWeek> plannedWeekdays) {
-		this.plannedWeekdays = plannedWeekdays;
+	public void setScheduledWeekdays(Set<DayOfWeek> scheduledWeekday) {
+		this.scheduledWeekdays = scheduledWeekday;
 	}
 
-	public void addPlannedWeekday(DayOfWeek plannedWeekday) {
-		this.plannedWeekdays.add(plannedWeekday);
+	public void addScheduledWeekday(DayOfWeek scheduledWeekday) {
+		this.scheduledWeekdays.add(scheduledWeekday);
 	}
-	
 }

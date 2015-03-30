@@ -21,7 +21,7 @@ public class Aircraft extends AbstractEntity {
 	private String type;
 	
 	private String registration;
-
+	
 	public Aircraft() {
 		super();
 	}
@@ -61,5 +61,4 @@ public class Aircraft extends AbstractEntity {
 	public void setRegistration(String registration) {
 		this.registration = registration;
 	}
-
 }

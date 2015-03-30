@@ -1,7 +1,7 @@
 package de.msg.xt.route;
 
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 /**  
 * Spring Projections Samples 
@@ -12,6 +12,11 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 * @author Michael Schäfer, Achim Müller 
 */
 
-//@RepositoryRestResource(excerptProjection = RouteConnectionExcerpt.class)
-public interface RouteRepository extends CrudRepository<Route, Long> {	
+// Projection für Default-Ansicht
+// @RepositoryRestResource(excerptProjection = ConnectionProjection.class)
+public interface RouteRepository extends CrudRepository<Route, Long> {
+	
+	@EntityGraph("routeFlightAircraft")
+	public Iterable<Route> findAll();
+
 }
