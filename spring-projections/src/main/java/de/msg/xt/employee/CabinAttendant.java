@@ -15,12 +15,12 @@ public class CabinAttendant extends Role {
 	private int rank;
 	
 	public CabinAttendant() {
-		super();
+		super("CabinAttendant");
 	}
 
 
 	public CabinAttendant(int rank) {
-		super();
+		super("CabinAttendant");
 		this.rank = rank;
 	}
 

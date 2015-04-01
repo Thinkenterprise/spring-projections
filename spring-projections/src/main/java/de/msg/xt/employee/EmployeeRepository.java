@@ -2,6 +2,8 @@ package de.msg.xt.employee;
 
 import org.springframework.data.repository.CrudRepository;
 
+import de.msg.xt.aircraft.Aircraft;
+
 /**  
 * Spring Projections Samples 
 * Design and Development by msg Applied Technology Research
@@ -13,4 +15,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface EmployeeRepository extends CrudRepository<Employee, Long>{
 
+	Employee findByStaffNumber(String staffNumber);
 }

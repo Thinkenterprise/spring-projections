@@ -68,6 +68,7 @@ public class Employee extends AbstractEntity {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
 	public Role getRole() {
 		return role;
 	}

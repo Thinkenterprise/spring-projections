@@ -1,15 +1,18 @@
 package de.msg.xt.route;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import de.msg.xt.aircraft.Aircraft;
 import de.msg.xt.core.AbstractEntity;
+import de.msg.xt.employee.Employee;
 
 /**  
 * Spring Projections Samples 
@@ -27,10 +30,13 @@ public class Flight extends AbstractEntity {
 	
 	private LocalDate date;
 	
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="aircraft")
 	private Aircraft aircraft;
 	
+	@OneToMany
+	private Set<Employee> employees = new HashSet<Employee>();
+
 	public Flight() {
 		super();
 	}
@@ -63,5 +69,17 @@ public class Flight extends AbstractEntity {
 
 	public void setAircraft(Aircraft aircraft) {
 		this.aircraft = aircraft;
+	}
+
+	public Set<Employee> getEmployees() {
+		return employees;
+	}
+
+	public void setEmployees(Set<Employee> employees) {
+		this.employees = employees;
+	}
+	
+	public void addEmployee(Employee e) {
+		this.employees.add(e);
 	}
 }

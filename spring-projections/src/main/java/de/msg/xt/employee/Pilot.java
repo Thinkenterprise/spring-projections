@@ -13,15 +13,16 @@ import javax.persistence.Entity;
 public class Pilot extends Role {
 
 	private String certificateNumber;
+	
 	private String[] allowedAircrafts;
 
 	public Pilot() {
-		super();
+		super("Pilot");
 	}
 
 	
 	public Pilot(String certificateNumber, String[] allowedAircrafts) {
-		super();
+		super("Pilot");
 		this.certificateNumber = certificateNumber;
 		this.allowedAircrafts = allowedAircrafts;
 	}
