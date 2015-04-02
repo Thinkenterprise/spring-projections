@@ -1,8 +1,5 @@
 package de.msg.xt.route.projection;
 
-import java.time.DayOfWeek;
-import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -28,4 +25,7 @@ public interface ConnectionProjection {
 
 	@Value("#{target.departureTime.toString()}")
 	String getDepartureTime();
+	
+	@Value("#{@routeService.calculateFlightCount(target)}")	
+	int getFlightCount();
 }

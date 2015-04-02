@@ -5,7 +5,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-import de.msg.xt.route.projection.FlightplanProjection;
+import de.msg.xt.route.projection.ConnectionProjection;
 
 /**  
 * Spring Projections Samples 
@@ -17,7 +17,7 @@ import de.msg.xt.route.projection.FlightplanProjection;
 */
 
 // Projection für Default-Ansicht
-// @RepositoryRestResource(excerptProjection = FlightplanProjection.class)
+@RepositoryRestResource(excerptProjection = ConnectionProjection.class)
 public interface RouteRepository extends CrudRepository<Route, Long> {
 	
 	//@EntityGraph("routeFlightAircraft")

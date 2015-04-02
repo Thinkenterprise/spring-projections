@@ -135,7 +135,7 @@ public class DataInitializer {
 
 		// München-Ibiza LH1838
 		//
-		route = new Route("LH1602", "MUC", "IBZ");
+		route = new Route("LH1838", "MUC", "IBZ");
 		route.addScheduledWeekday(DayOfWeek.MONDAY);
 		route.addScheduledWeekday(DayOfWeek.THURSDAY);
 		route.addScheduledWeekday(DayOfWeek.SATURDAY);
