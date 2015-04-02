@@ -1,6 +1,6 @@
 # Spring Projections
 
-What this project is about...
+What this project is about....
 
 ## Quickstart
 
