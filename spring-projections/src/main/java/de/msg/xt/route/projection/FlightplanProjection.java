@@ -7,7 +7,9 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
+import de.msg.xt.aircraft.Aircraft;
 import de.msg.xt.route.Route;
+import de.msg.xt.route.projection.RouteFlightAircraftProjection.FlightProjection.AircraftProjection;
 
 /**  
 * Spring Projections Samples 
@@ -29,6 +31,17 @@ public interface FlightplanProjection {
 
 	Set<DayOfWeek> getScheduledWeekdays();
 
-	@Value("#{target.time.toString()}")
-	String getTime();
+	@Value("#{target.departureTime.toString()}")
+	String getDepartureTime();
+
+	@Value("#{target.arrivalTime.toString()}")
+	String getArrivalTime();
+	
+	AircraftProjection getAircraft() ;
+
+	@Projection(types = Aircraft.class)
+	public interface AircraftProjection {
+		
+		String getType();
+	}
 }

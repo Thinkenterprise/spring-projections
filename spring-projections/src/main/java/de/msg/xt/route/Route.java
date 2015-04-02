@@ -13,6 +13,8 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
 import javax.persistence.NamedEntityGraphs;
@@ -20,6 +22,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Transient;
 
+import de.msg.xt.aircraft.Aircraft;
 import de.msg.xt.core.AbstractEntity;
 
 /**  
@@ -42,12 +45,17 @@ public class Route extends AbstractEntity {
 	String departure;
 	String destination;
 	
-	LocalTime time;
+	LocalTime departureTime;
+	LocalTime arrivalTime;
 	
 	@Enumerated(EnumType.ORDINAL)
 	@ElementCollection(targetClass=DayOfWeek.class)
 	Set<DayOfWeek> scheduledWeekdays = new HashSet<DayOfWeek>();
-	
+
+	@ManyToOne
+	@JoinColumn(name="aircraft")
+	private Aircraft aircraft;
+
 	@Transient
 	Double total;
 
@@ -114,12 +122,20 @@ public class Route extends AbstractEntity {
 		this.total = total;
 	}
 
-	public LocalTime getTime() {
-		return time;
+	public LocalTime getDepartureTime() {
+		return departureTime;
 	}
 
-	public void setTime(LocalTime time) {
-		this.time = time;
+	public void setDepartureTime(LocalTime time) {
+		this.departureTime = time;
+	}
+
+	public LocalTime getArrivalTime() {
+		return arrivalTime;
+	}
+
+	public void setArrivalTime(LocalTime time) {
+		this.arrivalTime = time;
 	}
 
 	public Set<DayOfWeek> getScheduledWeekdays() {
@@ -132,5 +148,23 @@ public class Route extends AbstractEntity {
 
 	public void addScheduledWeekday(DayOfWeek scheduledWeekday) {
 		this.scheduledWeekdays.add(scheduledWeekday);
+	}
+
+	public void addScheduledDaily() {
+		this.scheduledWeekdays.add(DayOfWeek.MONDAY);
+		this.scheduledWeekdays.add(DayOfWeek.TUESDAY);
+		this.scheduledWeekdays.add(DayOfWeek.WEDNESDAY);
+		this.scheduledWeekdays.add(DayOfWeek.THURSDAY);
+		this.scheduledWeekdays.add(DayOfWeek.FRIDAY);
+		this.scheduledWeekdays.add(DayOfWeek.SATURDAY);
+		this.scheduledWeekdays.add(DayOfWeek.SUNDAY);
+	}
+
+	public Aircraft getAircraft() {
+		return aircraft;
+	}
+
+	public void setAircraft(Aircraft aircraft) {
+		this.aircraft = aircraft;
 	}
 }

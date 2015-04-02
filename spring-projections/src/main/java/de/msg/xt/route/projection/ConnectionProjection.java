@@ -1,5 +1,8 @@
 package de.msg.xt.route.projection;
 
+import java.time.DayOfWeek;
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
@@ -17,7 +20,12 @@ import de.msg.xt.route.Route;
 @Projection(name = "connection", types = Route.class)
 public interface ConnectionProjection {
 
+	String getFlightNumber();
+
 	String getDeparture();
 	
 	String getDestination();
+
+	@Value("#{target.departureTime.toString()}")
+	String getDepartureTime();
 }

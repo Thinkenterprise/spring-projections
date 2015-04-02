@@ -18,18 +18,14 @@ import de.msg.xt.route.Route;
  * @author Michael Schäfer, Achim Müller
  */
 
-@Projection(name = "routeFlightEmployee", types = Route.class)
-public interface RouteFlightEmployeeProjection {
+@Projection(name = "crew", types = Route.class)
+public interface CrewProjection {
 
 	String getFlightNumber();
 
-	String getDeparture();
-	
-	String getDestination();
+	@Value("#{target.departureTime.toString()}")
+	String getDepartureTime();
 
-	@Value("#{target.time.toString()}")
-	String getTime();
-	
 	List<FlightProjection> getFlights() ;
 	
 	@Projection(types = Flight.class)
@@ -43,7 +39,9 @@ public interface RouteFlightEmployeeProjection {
 		@Projection(types = Employee.class)
 		public interface EmployeeProjection {
 			
-			Long getId();
+			String getFirstName();
+
+			String getLastName();
 
 			@Value("#{target.role.toString()}")
 			String getRole();

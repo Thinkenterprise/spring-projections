@@ -30,10 +30,6 @@ public class Flight extends AbstractEntity {
 	
 	private LocalDate date;
 	
-	@ManyToOne
-	@JoinColumn(name="aircraft")
-	private Aircraft aircraft;
-	
 	@OneToMany
 	private Set<Employee> employees = new HashSet<Employee>();
 
@@ -61,14 +57,6 @@ public class Flight extends AbstractEntity {
 	
 	public void setDate(LocalDate date) {
 		this.date = date;
-	}
-
-	public Aircraft getAircraft() {
-		return aircraft;
-	}
-
-	public void setAircraft(Aircraft aircraft) {
-		this.aircraft = aircraft;
 	}
 
 	public Set<Employee> getEmployees() {

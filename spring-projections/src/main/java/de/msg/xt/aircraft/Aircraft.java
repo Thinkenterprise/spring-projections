@@ -16,8 +16,6 @@ import de.msg.xt.core.AbstractEntity;
 @Entity
 public class Aircraft extends AbstractEntity {
 	
-	private long serial;
-	
 	private String type;
 	
 	private String registration;
@@ -26,24 +24,10 @@ public class Aircraft extends AbstractEntity {
 		super();
 	}
 
-	public Aircraft(long serial) {
+	public Aircraft(String type, String registration) {
 		super();
-		this.serial = serial;
-	}
-
-	public Aircraft(long serial, String type, String registration) {
-		super();
-		this.serial = serial;
 		this.type = type;
 		this.registration = registration;
-	}
-
-	public long getSerial() {
-		return serial;
-	}
-
-	public void setSerial(long serial) {
-		this.serial = serial;
 	}
 
 	public String getType() {

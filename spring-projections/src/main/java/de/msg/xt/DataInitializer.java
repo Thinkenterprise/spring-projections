@@ -70,15 +70,14 @@ public class DataInitializer {
 	}
 
 	private void initAircrafts() {
-		aircraftRepository.save(new Aircraft(1, "A319", "D-AILA"));
-		aircraftRepository.save(new Aircraft(2, "A320", "D-AIPA"));
-		aircraftRepository.save(new Aircraft(3, "A380", "D-AIMA"));
+		aircraftRepository.save(new Aircraft("B764", "D-BILA"));
+		aircraftRepository.save(new Aircraft("A320", "D-AIPA"));
 	}
 
 	private void initEmployees() {
 
 		Employee employee = new Employee("P234238", "Fred", "Flieger");
-		Pilot pilot = new Pilot("RF775566734", new String[] { "A380" });
+		Pilot pilot = new Pilot("RF775566734", new String[] { "A320", "B764" });
 		employee.setRole(pilot);
 		employeeRepository.save(employee);
 
@@ -95,35 +94,57 @@ public class DataInitializer {
 
 	public void initRoutes() {
 
-		Route route = new Route("LH444", "Koeln", "Muenchen");
-		route.addScheduledWeekday(DayOfWeek.MONDAY);
-		route.addScheduledWeekday(DayOfWeek.FRIDAY);
-		route.setTime(LocalTime.of(8, 0));
+		// München-Houston LH7902
+		//
+		Route route = new Route("LH7902", "MUC", "IAH");
+		route.addScheduledDaily();
+		route.setDepartureTime(LocalTime.of(9, 30));
+		route.setArrivalTime(LocalTime.of(14, 00));
 
+		// Flug am 23.09.2015
 		Flight flight = new Flight(120.45, LocalDate.of(2015, 9, 23));
-		Aircraft aircraft = this.aircraftRepository.findByRegistration("D-AIMA");
-		flight.setAircraft(aircraft);
+		Aircraft aircraft = this.aircraftRepository.findByRegistration("D-BILA");
+		route.setAircraft(aircraft);
 		Employee pilot = this.employeeRepository.findByStaffNumber("P234238");
 		flight.addEmployee(pilot);
 		Employee purser = this.employeeRepository.findByStaffNumber("P234234");
 		flight.addEmployee(purser);
 		route.addFlight(flight);
 
+		// Flug am 24.09.2015
 		flight = new Flight(111.45, LocalDate.of(2015, 9, 24));
-		aircraft = this.aircraftRepository.findByRegistration("D-AILA");
-		flight.setAircraft(aircraft);
+		aircraft = this.aircraftRepository.findByRegistration("D-BILA");
+		route.setAircraft(aircraft);
 		route.addFlight(flight);
 
 		routeRepository.save(route);
 
-		route = new Route("LH444", "Koeln", "Hamburg");
-		route.addScheduledWeekday(DayOfWeek.MONDAY);
-		route.addScheduledWeekday(DayOfWeek.FRIDAY);
-		route.setTime(LocalTime.of(8, 45));
+		// München-Ibiza LH1602
+		//
+		route = new Route("LH1602", "MUC", "IBZ");
+		route.addScheduledWeekday(DayOfWeek.SATURDAY);
+		route.setDepartureTime(LocalTime.of(8, 50));
+		route.setArrivalTime(LocalTime.of(11, 15));
 
-		flight = new Flight(120.45, LocalDate.of(2015, 10, 1));
-		aircraft = this.aircraftRepository.findByRegistration("D-AIMA");
-		flight.setAircraft(aircraft);
+		flight = new Flight(120.45, LocalDate.of(2015, 9, 19));
+		aircraft = this.aircraftRepository.findByRegistration("D-AIPA");
+		route.setAircraft(aircraft);
+		route.addFlight(flight);
+
+		routeRepository.save(route);
+
+		// München-Ibiza LH1838
+		//
+		route = new Route("LH1602", "MUC", "IBZ");
+		route.addScheduledWeekday(DayOfWeek.MONDAY);
+		route.addScheduledWeekday(DayOfWeek.THURSDAY);
+		route.addScheduledWeekday(DayOfWeek.SATURDAY);
+		route.setDepartureTime(LocalTime.of(12, 25));
+		route.setArrivalTime(LocalTime.of(14, 50));
+
+		flight = new Flight(120.45, LocalDate.of(2015, 9, 19));
+		aircraft = this.aircraftRepository.findByRegistration("D-AIPA");
+		route.setAircraft(aircraft);
 		route.addFlight(flight);
 
 		routeRepository.save(route);

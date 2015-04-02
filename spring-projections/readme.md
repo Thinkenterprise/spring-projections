@@ -25,11 +25,8 @@ http://localhost:8080/routes
 
 Projections:
 http://localhost:8080/routes?projection=connection
-http://localhost:8080/routes?projection=connectionFlightCount
 http://localhost:8080/routes?projection=flightplan
-http://localhost:8080/routes?projection=routeFlightAircraft
-http://localhost:8080/routes?projection=routeFlightEmployee
-
+http://localhost:8080/routes?projection=crew
 
 ## IDE setup 
 
