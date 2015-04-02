@@ -10,14 +10,13 @@ import de.msg.xt.employee.Employee;
 import de.msg.xt.route.Flight;
 import de.msg.xt.route.Route;
 
-/**  
-* Spring Projections Samples 
-* Design and Development by msg Applied Technology Research
-* Copyright (c) 2015 msg systems ag (http://www.msg-systems.com/)
-* All Rights Reserved.
-* 
-* @author Michael Schäfer, Achim Müller 
-*/
+/**
+ * Spring Projections Samples Design and Development by msg Applied Technology
+ * Research Copyright (c) 2015 msg systems ag (http://www.msg-systems.com/) All
+ * Rights Reserved.
+ * 
+ * @author Michael Schäfer, Achim Müller
+ */
 
 @Projection(name = "routeFlightEmployee", types = Route.class)
 public interface RouteFlightEmployeeProjection {
@@ -48,6 +47,7 @@ public interface RouteFlightEmployeeProjection {
 
 			@Value("#{target.role.toString()}")
 			String getRole();
-}
+		}
 	}
 }
+
