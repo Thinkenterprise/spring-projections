@@ -42,9 +42,7 @@ public interface RouteFlightEmployeeProjection {
 		@Projection(types = Employee.class)
 		public interface EmployeeProjection {
 			
-			String getLastName();
-
-			String getFirstName();
+			Long getId();
 
 			@Value("#{target.role.toString()}")
 			String getRole();

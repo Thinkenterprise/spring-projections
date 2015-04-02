@@ -1,6 +1,7 @@
 package de.msg.xt.route;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.rest.core.config.Projection;
 
 /**  
@@ -12,10 +13,13 @@ import org.springframework.data.rest.core.config.Projection;
 * @author Michael Schäfer, Achim Müller 
 */
 
-@Projection(name = "connection", types = Route.class)
-public interface ConnectionProjection {
+@Projection(name = "connectionFlightCount", types = Route.class)
+public interface ConnectionFlightCountProjection {
 
 	String getDeparture();
 	
 	String getDestination();
+	
+	@Value("#{@routeService.calculateFlightCount(target)}")	
+	int getFlightCount();
 }
