@@ -1,4 +1,4 @@
-package de.msg.xt.route;
+package de.msg.xt.route.projection;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -6,6 +6,8 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
+
+import de.msg.xt.route.Route;
 
 /**  
 * Spring Projections Samples 

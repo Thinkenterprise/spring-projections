@@ -1,4 +1,4 @@
-package de.msg.xt.route;
+package de.msg.xt.route.projection;
 
 import java.util.List;
 import java.util.Set;
@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
 import de.msg.xt.employee.Employee;
+import de.msg.xt.route.Flight;
+import de.msg.xt.route.Route;
 
 /**  
 * Spring Projections Samples 
