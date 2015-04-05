@@ -56,6 +56,10 @@ public class Route extends AbstractEntity {
 	@JoinColumn(name="aircraft")
 	private Aircraft aircraft;
 
+	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@OrderColumn(name="date")
+	private List<Flight> flights = new ArrayList<Flight>();
+
 	@Transient
 	Double total;
 
@@ -74,10 +78,6 @@ public class Route extends AbstractEntity {
 		this.destination = destination;
 		this.departure = departure;
 	}
-
-	@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
-	@OrderColumn(name="date")
-	private List<Flight> flights = new ArrayList<Flight>();
 
 	public String getDeparture() {
 		return departure;

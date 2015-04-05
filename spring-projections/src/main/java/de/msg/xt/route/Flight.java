@@ -4,13 +4,10 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import de.msg.xt.aircraft.Aircraft;
 import de.msg.xt.core.AbstractEntity;
 import de.msg.xt.employee.Employee;
 
@@ -29,7 +26,10 @@ public class Flight extends AbstractEntity {
 	private double price;
 	
 	private LocalDate date;
-	
+
+	@ManyToOne
+	private Route route;
+
 	@OneToMany
 	private Set<Employee> employees = new HashSet<Employee>();
 
@@ -69,5 +69,13 @@ public class Flight extends AbstractEntity {
 	
 	public void addEmployee(Employee e) {
 		this.employees.add(e);
+	}
+
+	public Route getRoute() {
+		return route;
+	}
+
+	public void setRoute(Route route) {
+		this.route = route;
 	}
 }

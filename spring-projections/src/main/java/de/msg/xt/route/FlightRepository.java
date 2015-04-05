@@ -16,10 +16,10 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
  * @author Michael Schäfer, Achim Müller
  */
 
-// Projection für Default-Ansicht
-// @RepositoryRestResource(excerptProjection = ConnectionProjection.class)
-public interface RouteRepository extends CrudRepository<Route, Long> {
+public interface FlightRepository extends CrudRepository<Flight, Long> {
 
-	@Query("select r from Route r where r.departure = :departure")
-	public Iterable<Route> findByDeparture(@Param("departure") String departure);
+	@Query("select f from Flight f where f.date = :date")
+	public Iterable<Flight> findByDate(
+			@DateTimeFormat(iso = ISO.DATE) @Param("date") LocalDate date);
+
 }

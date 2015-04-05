@@ -1,5 +1,7 @@
 package de.msg.xt.route;
 
+import java.time.LocalTime;
+
 import org.springframework.stereotype.Service;
 
 /**  
@@ -15,7 +17,10 @@ import org.springframework.stereotype.Service;
 public class RouteService {
 
 	public int calculateFlightCount(Route route) {
-		
-			return route.getFlights().size();
+		return route.getFlights().size();
+	}
+
+	public String formatTime(LocalTime time) {
+		return time.toString();
 	}
 }

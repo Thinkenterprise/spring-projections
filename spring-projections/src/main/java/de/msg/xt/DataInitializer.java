@@ -109,12 +109,14 @@ public class DataInitializer {
 		flight.addEmployee(pilot);
 		Employee purser = this.employeeRepository.findByStaffNumber("P234234");
 		flight.addEmployee(purser);
+		flight.setRoute(route);
 		route.addFlight(flight);
 
 		// Flug am 24.09.2015
 		flight = new Flight(111.45, LocalDate.of(2015, 9, 24));
 		aircraft = this.aircraftRepository.findByRegistration("D-BILA");
 		route.setAircraft(aircraft);
+		flight.setRoute(route);
 		route.addFlight(flight);
 
 		routeRepository.save(route);
@@ -148,5 +150,20 @@ public class DataInitializer {
 		route.addFlight(flight);
 
 		routeRepository.save(route);
+		
+		// München-New York LH401
+		//
+		route = new Route("LH401", "FRA", "NYC");
+		route.addScheduledDaily();
+		route.setDepartureTime(LocalTime.of(15, 55));
+		route.setArrivalTime(LocalTime.of(5, 30));
+
+		flight = new Flight(120.45, LocalDate.of(2015, 9, 30));
+		aircraft = this.aircraftRepository.findByRegistration("D-AIPA");
+		route.setAircraft(aircraft);
+		route.addFlight(flight);
+
+		routeRepository.save(route);
+
 	}
 }

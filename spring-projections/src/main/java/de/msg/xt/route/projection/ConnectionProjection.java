@@ -22,10 +22,7 @@ public interface ConnectionProjection {
 	String getDeparture();
 	
 	String getDestination();
-
+	
 	@Value("#{target.departureTime.toString()}")
 	String getDepartureTime();
-	
-	@Value("#{@routeService.calculateFlightCount(target)}")	
-	int getFlightCount();
 }

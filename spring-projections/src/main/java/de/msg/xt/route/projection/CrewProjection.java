@@ -23,6 +23,8 @@ public interface CrewProjection {
 
 	String getFlightNumber();
 
+	String getDeparture();
+
 	@Value("#{target.departureTime.toString()}")
 	String getDepartureTime();
 
@@ -42,7 +44,7 @@ public interface CrewProjection {
 			String getFirstName();
 
 			String getLastName();
-
+			
 			@Value("#{target.role.toString()}")
 			String getRole();
 		}
