@@ -6,7 +6,10 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
+import de.msg.xt.employee.CabinAttendant;
 import de.msg.xt.employee.Employee;
+import de.msg.xt.employee.Pilot;
+import de.msg.xt.employee.Role;
 import de.msg.xt.route.Flight;
 import de.msg.xt.route.Route;
 
@@ -41,12 +44,21 @@ public interface CrewProjection {
 		@Projection(types = Employee.class)
 		public interface EmployeeProjection {
 			
-			String getFirstName();
+			@Value("#{target.firstName} #{target.lastName}")
+			String getName();
 
-			String getLastName();
+			Role getRole();
 			
-			@Value("#{target.role.toString()}")
-			String getRole();
+			/* Das geht nicht: */
+			/*
+			RoleProjection getRole();
+			
+			@Projection(types = {Role.class, Pilot.class, CabinAttendant.class})
+			public interface RoleProjection {
+				String getRoleName();
+				String getCertificateNumber();
+			}
+			*/
 		}
 	}
 }
