@@ -19,22 +19,9 @@ import de.msg.xt.route.Route;
 */
 
 @Projection(name = "flightplan", types = Route.class)
-public interface FlightplanProjection {
-
-	String getFlightNumber();
-
-	String getDeparture();
-	
-	String getDestination();
+public interface FlightplanProjection extends ConnectionProjection {
 
 	Set<DayOfWeek> getScheduledWeekdays();
-
-	@Value("#{@routeService.formatTime(target.departureTime)}")
-	String getDepartureTime();
-
-	@Value("#{@routeService.formatTime(target.arrivalTime)}")
-	String getArrivalTime();
-	
 	AircraftProjection getAircraft() ;
 
 	
