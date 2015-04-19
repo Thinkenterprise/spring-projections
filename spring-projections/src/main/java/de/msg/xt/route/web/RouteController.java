@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import de.msg.xt.route.Route;
 import de.msg.xt.route.RouteRepository;
 import de.msg.xt.route.projection.ConnectionProjection;
+import de.msg.xt.route.projection.FlightplanProjection;
 
 
 @RestController
@@ -26,13 +27,23 @@ public class RouteController {
 		
 		
 	@RequestMapping("{id}/connection")
-	public ResponseEntity<ConnectionProjection> get(@PathVariable(value="id") Long id) {
+	public ResponseEntity<ConnectionProjection> getConnection(@PathVariable(value="id") Long id) {
 			
 		Route routes = routeRepository.findOne( new Long(id));
 		
 		ConnectionProjection connectionProjection = projectionFactory.createProjection(ConnectionProjection.class, routes);
 		return new ResponseEntity<ConnectionProjection>(connectionProjection,HttpStatus.OK);
 		
+	}
+	
+	
+	@RequestMapping("{id}/flightplan")
+	public ResponseEntity<FlightplanProjection> getFlightplan(@PathVariable(value="id") Long id) {
+			
+		Route routes = routeRepository.findOne( new Long(id));
+		
+		FlightplanProjection connectionProjection = projectionFactory.createProjection(FlightplanProjection.class, routes);
+		return new ResponseEntity<FlightplanProjection>(connectionProjection,HttpStatus.OK);
 		
 	}
 	
