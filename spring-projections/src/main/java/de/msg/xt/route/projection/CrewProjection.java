@@ -6,10 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
-import de.msg.xt.employee.CabinAttendant;
-import de.msg.xt.employee.Employee;
-import de.msg.xt.employee.Pilot;
-import de.msg.xt.employee.Role;
+import de.msg.xt.employee.projection.EmployeeProjection;
 import de.msg.xt.route.Flight;
 import de.msg.xt.route.Route;
 
@@ -22,44 +19,9 @@ import de.msg.xt.route.Route;
  */
 
 @Projection(name = "crew", types = Route.class)
-public interface CrewProjection {
-
-	String getFlightNumber();
-
-	String getDeparture();
-
-	@Value("#{target.departureTime.toString()}")
-	String getDepartureTime();
+public interface CrewProjection extends ConnectionProjection {
 
 	List<FlightProjection> getFlights() ;
 	
-	@Projection(types = Flight.class)
-	public interface FlightProjection {
-		
-		@Value("#{target.date.toString()}")
-		String getDate();
-
-		Set<EmployeeProjection> getEmployees() ;
-
-		@Projection(types = Employee.class)
-		public interface EmployeeProjection {
-			
-			@Value("#{target.firstName} #{target.lastName}")
-			String getName();
-
-			Role getRole();
-			
-			/* Das geht nicht: */
-			/*
-			RoleProjection getRole();
-			
-			@Projection(types = {Role.class, Pilot.class, CabinAttendant.class})
-			public interface RoleProjection {
-				String getRoleName();
-				String getCertificateNumber();
-			}
-			*/
-		}
-	}
 }
 
