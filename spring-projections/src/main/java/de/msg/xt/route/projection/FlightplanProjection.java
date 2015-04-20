@@ -22,7 +22,9 @@ import de.msg.xt.route.Route;
 public interface FlightplanProjection extends ConnectionProjection {
 
 	Set<DayOfWeek> getScheduledWeekdays();
-	AircraftProjection getAircraft() ;
-
 	
+	@Value("#{@routeService.formatTime(target.arrivalTime)}")
+	String getArrivalTime();
+
+	AircraftProjection getAircraft() ;
 }
