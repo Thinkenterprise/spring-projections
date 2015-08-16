@@ -23,6 +23,7 @@
 	</parent>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -75,9 +76,11 @@
 			<url>http://repo.springsource.org/snapshot</url>
 		</repository>
 
-
-
-
+		<repository>
+			<id>repository.springsource.milestones</id>
+			<name>SpringSource Milestone Repository</name>
+			<url>http://repo.springsource.org/milestone</url>
+		</repository>
 
 	</repositories>
 
