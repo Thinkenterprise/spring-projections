@@ -23,6 +23,7 @@
 	</parent>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
@@ -65,6 +66,13 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
+
+			<!-- Package as an executable jar -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+
 		</plugins>
 	</build>
 	<repositories>
@@ -75,10 +83,23 @@
 			<url>http://repo.springsource.org/snapshot</url>
 		</repository>
 
-
-
-
+		<repository>
+			<id>repository.springsource.milestones</id>
+			<name>SpringSource Milestone Repository</name>
+			<url>http://repo.springsource.org/milestone</url>
+		</repository>
 
 	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>spring-snapshots</id>
+			<url>http://repo.spring.io/snapshot</url>
+		</pluginRepository>
+		<pluginRepository>
+			<id>spring-milestones</id>
+			<url>http://repo.spring.io/milestone</url>
+		</pluginRepository>
+	</pluginRepositories>
 
 </project>

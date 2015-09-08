@@ -14,8 +14,7 @@ From the command line do:
 ```
 git clone https://github.com/Thinkenterprise/spring-projections.git
 cd spring-projections
-mvn clean package
-java -jar target/*.jar
+mvn clean package spring-boot:run
 ```
 
 Root Resources:
